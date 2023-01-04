@@ -1,0 +1,7 @@
+﻿  DLL injection.cpp
+G:\Software\Projects\DLL injection\DLL injection\DLL injection.cpp(12,55): error C2664: 'HWND FindWindowW(LPCWSTR,LPCWSTR)': cannot convert argument 2 from 'const char [20]' to 'LPCWSTR'
+G:\Software\Projects\DLL injection\DLL injection\DLL injection.cpp(12,34): message : Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\winuser.h(10057,1): message : see declaration of 'FindWindowW'
+G:\Software\Projects\DLL injection\DLL injection\DLL injection.cpp(32,48): error C2664: 'HMODULE GetModuleHandleW(LPCWSTR)': cannot convert argument 1 from 'const char [9]' to 'LPCWSTR'
+G:\Software\Projects\DLL injection\DLL injection\DLL injection.cpp(32,38): message : Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\libloaderapi.h(269,1): message : see declaration of 'GetModuleHandleW'
