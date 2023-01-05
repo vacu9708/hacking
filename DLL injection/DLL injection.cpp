@@ -2,6 +2,8 @@
 #include <iostream>
 #include <tlhelp32.h>
 #include <tchar.h>
+#include <string>
+#include <vector>
 using namespace std;
 
 LPVOID find_dll(TCHAR* szModuleName, DWORD pID) {
@@ -26,18 +28,42 @@ LPVOID find_dll(TCHAR* szModuleName, DWORD pID) {
 	return NULL;
 }
 
+vector<string> parse(string str) {
+	vector<string> choice;
+	short start = 0;
+	for (short i = 0; i < str.length(); i++)
+		if (i == str.length() - 1)
+			choice.push_back(str.substr(start, i + 1 - start));
+		else if (str[i] == ' ') {
+			choice.push_back(str.substr(start, i - start));
+			start = i + 1;
+		}
+	return choice;
+}
+
 int main(){
-	//HWND hWindow = FindWindow(NULL, "Minecraft* 1.19.3 - Singleplayer");
-	HWND hWindow = FindWindow(NULL, "*Untitled - Notepad");
-	//HWND hGameWindow = FindWindow(NULL, "Overwatch");
-	DWORD pID;
-	GetWindowThreadProcessId(hWindow, &pID);
-	//pID = 37836;
+	DWORD pID = NULL;
+	printf("1: Minecraft* 1.19.3 - Singleplayer\n2: *Untitled - Notepad\n3: Overwatch\n4: Manual input\n");
+	string input; getline(cin, input, '\n');
+	vector<string> choice = parse(input);
+	HWND hWindow = NULL;
+	if (choice[0] == "4")
+		pID = stoul(choice[1]);
+	else {
+		if (choice[0] == "1")
+			hWindow = FindWindow(NULL, "Minecraft* 1.19.3 - Singleplayer");
+		else if (choice[0] == "2")
+			hWindow = FindWindow(NULL, "*Untitled - Notepad");
+		else if (choice[0] == "3")
+			hWindow = FindWindow(NULL, "Overwatch");
+		GetWindowThreadProcessId(hWindow, &pID);
+	}
 	HANDLE p_handle = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pID);
 	if (!p_handle) {
 		fprintf(stderr, "[-] ERROR: Couldn't open process %lu. OpenProcess failed with error: %lu.\n", pID, GetLastError());
 		return 0;
 	}
+	//LPCSTR dllPath = "G:\\Software\\Projects\\Dll1\\Release\\Dll1.dll";
 	LPCSTR dllPath = "G:\\Software\\Projects\\Dll1\\x64\\Release\\Dll1.dll";
 	LPVOID remoteBuffer = VirtualAllocEx(p_handle, NULL, strlen(dllPath), MEM_COMMIT, PAGE_EXECUTE_READWRITE);
 	if (!remoteBuffer) printf("remote Buffer\n");

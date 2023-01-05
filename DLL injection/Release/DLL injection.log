@@ -1,7 +1,7 @@
-﻿  DLL injection.cpp
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (Release\) contains files shared from another project (DLL injection.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  DLL injection.cpp
   Generating code
-  1 of 74 functions ( 1.4%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+  Previous IPDB and IOBJ mismatch, fall back to full compilation.
+  All 7 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
-  DLL injection.vcxproj -> G:\Software\Projects\DLL injection\Release\DLL injection.exe
+  DLL injection.vcxproj -> G:\Software\Projects\DLL injection\Release\aim_dll.exe
