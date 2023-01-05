@@ -1,0 +1,16 @@
+﻿  dllmain.cpp
+G:\Software\Projects\Dll1\Dll1\dllmain.cpp(70,22): warning C4018: '<': signed/unsigned mismatch
+G:\Software\Projects\Dll1\Dll1\dllmain.cpp(94,10): warning C4244: 'return': conversion from 'float' to 'long', possible loss of data
+G:\Software\Projects\Dll1\Dll1\dllmain.cpp(113,57): warning C4244: 'initializing': conversion from 'DDWORD' to 'unsigned int', possible loss of data
+G:\Software\Projects\Dll1\Dll1\dllmain.cpp(122,47): warning C4244: '=': conversion from 'long' to 'short', possible loss of data
+G:\Software\Projects\Dll1\Dll1\dllmain.cpp(159,38): warning C4244: 'argument': conversion from 'long' to 'USHORT', possible loss of data
+G:\Software\Projects\Dll1\Dll1\dllmain.cpp(168,38): warning C4244: 'argument': conversion from 'long' to 'USHORT', possible loss of data
+G:\Software\Projects\Dll1\Dll1\dllmain.cpp(186,18): warning C4244: '=': conversion from 'unsigned long' to 'USHORT', possible loss of data
+G:\Software\Projects\Dll1\Dll1\dllmain.cpp(201,47): warning C4244: 'argument': conversion from 'long' to 'USHORT', possible loss of data
+  Generating code
+G:\Software\Projects\Dll1\Dll1\dllmain.cpp(95): warning C4715: 'ptr2val': not all control paths return a value
+  6 of 307 functions ( 2.0%) were compiled, the rest were copied from previous compilation.
+    2 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Dll1.vcxproj -> G:\Software\Projects\Dll1\Release\Dll1.dll

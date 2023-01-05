@@ -1,0 +1,12 @@
+﻿  pch.cpp
+  dllmain.cpp
+G:\Software\Projects\Dll1\Dll1\dllmain.cpp(97,48): warning C4311: 'type cast': pointer truncation from 'char *' to 'DWORD'
+G:\Software\Projects\Dll1\Dll1\dllmain.cpp(97,48): warning C4302: 'type cast': truncation from 'char *' to 'DWORD'
+G:\Software\Projects\Dll1\Dll1\dllmain.cpp(108,17): warning C4101: 'exception': unreferenced local variable
+G:\Software\Projects\Dll1\Dll1\dllmain.cpp(143,16): warning C4101: 'exception': unreferenced local variable
+G:\Software\Projects\Dll1\Dll1\dllmain.cpp(179,11): warning C4477: 'printf' : format string '%x' requires an argument of type 'unsigned int', but variadic argument 2 has type '__int64'
+G:\Software\Projects\Dll1\Dll1\dllmain.cpp(179,11): message : consider using '%llx' in the format string
+G:\Software\Projects\Dll1\Dll1\dllmain.cpp(179,11): message : consider using '%Ix' in the format string
+G:\Software\Projects\Dll1\Dll1\dllmain.cpp(179,11): message : consider using '%I64x' in the format string
+G:\Software\Projects\Dll1\Dll1\dllmain.cpp(178,16): warning C4101: 'exception': unreferenced local variable
+  Dll1.vcxproj -> G:\Software\Projects\Dll1\x64\Debug\Dll1.dll

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "cd35bce9-fa77-4b24-bec8-598062509261": {
+      "ProjectGuid": "cd35bce9-fa77-4b24-bec8-598062509261",
+      "DisplayName": "Dll1",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
