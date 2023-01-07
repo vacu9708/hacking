@@ -1,26 +1,35 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (x64\Release\) contains files shared from another project (aim_bot_memory.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   aim_memory.cpp
-G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(117,10): warning C4244: 'return': conversion from 'float' to '__int64', possible loss of data
-G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(119,10): warning C4244: 'return': conversion from 'double' to '__int64', possible loss of data
-G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(123,12): warning C4244: 'initializing': conversion from 'unsigned __int64' to 'BYTE', possible loss of data
-G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(158,37): warning C4244: '=': conversion from '__int64' to 'short', possible loss of data
-G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(199,38): warning C4244: 'argument': conversion from '__int64' to 'USHORT', possible loss of data
-G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(205,75): warning C4018: '<=': signed/unsigned mismatch
-G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(206,72): warning C4018: '<=': signed/unsigned mismatch
-G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(207,40): warning C4244: 'argument': conversion from '__int64' to 'USHORT', possible loss of data
-G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(240,71): warning C4018: '<=': signed/unsigned mismatch
-G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(241,71): warning C4018: '<=': signed/unsigned mismatch
-G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(243,47): warning C4244: 'argument': conversion from '__int64' to 'USHORT', possible loss of data
-G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(250,10): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'DDWORD'
-G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(250,10): message : consider using '%lld' in the format string
-G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(250,10): message : consider using '%Id' in the format string
-G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(250,10): message : consider using '%I64d' in the format string
-G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(263,15): warning C4477: 'fprintf' : format string '%lld' requires an argument of type '__int64', but variadic argument 2 has type 'BYTE *'
-G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(264,10): warning C4477: 'printf' : format string '%lld' requires an argument of type '__int64', but variadic argument 2 has type 'BYTE *'
-G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(320,13): warning C4326: return type of 'main' should be 'int' instead of 'void'
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(115,10): warning C4244: 'return': conversion from 'float' to '__int64', possible loss of data
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(117,10): warning C4244: 'return': conversion from 'double' to '__int64', possible loss of data
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(176,38): warning C4244: '=': conversion from '__int64' to 'short', possible loss of data
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(202,39): warning C4267: '=': conversion from 'size_t' to 'BYTE', possible loss of data
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(239,40): warning C4244: 'argument': conversion from '__int64' to 'USHORT', possible loss of data
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(244,39): warning C4244: 'argument': conversion from '__int64' to 'USHORT', possible loss of data
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(281,47): warning C4244: 'argument': conversion from '__int64' to 'USHORT', possible loss of data
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(287,10): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'DDWORD'
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(287,10): message : consider using '%lld' in the format string
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(287,10): message : consider using '%Id' in the format string
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(287,10): message : consider using '%I64d' in the format string
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(301,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(302,16): warning C4477: 'fprintf' : format string '%lld' requires an argument of type '__int64', but variadic argument 2 has type 'BYTE *'
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(303,11): warning C4477: 'printf' : format string '%lld' requires an argument of type '__int64', but variadic argument 2 has type 'BYTE *'
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(306,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(307,16): warning C4477: 'fprintf' : format string '%lld' requires an argument of type '__int64', but variadic argument 2 has type 'BYTE *'
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(308,11): warning C4477: 'printf' : format string '%lld' requires an argument of type '__int64', but variadic argument 2 has type 'BYTE *'
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(364,10): warning C4477: 'printf' : format string '%lld' requires an argument of type '__int64', but variadic argument 1 has type 'BYTE *'
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(398,13): warning C4326: return type of 'main' should be 'int' instead of 'void'
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(436,11): warning C4244: 'argument': conversion from 'float' to 'BYTE', possible loss of data
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(438,11): warning C4244: 'argument': conversion from 'float' to 'BYTE', possible loss of data
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(440,15): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(442,51): warning C4244: 'argument': conversion from 'float' to 'char', possible loss of data
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(444,32): warning C4244: 'argument': conversion from 'float' to 'char', possible loss of data
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(446,40): warning C4244: 'argument': conversion from 'float' to 'char', possible loss of data
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(448,30): warning C4244: 'argument': conversion from 'float' to 'char', possible loss of data
   Generating code
-  1 of 282 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+G:\Software\Projects\aim_bot_memory\aim_bot_memory\aim_memory.cpp(129): warning C4715: 'addr2uval': not all control paths return a value
+  5 of 292 functions ( 1.7%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    9 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   aim_bot_memory.vcxproj -> G:\Software\Projects\aim_bot_memory\x64\Release\aim_memory.exe
