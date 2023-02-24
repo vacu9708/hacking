@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 using namespace std;
+DWORD pID;
+HANDLE process;
 
 LPVOID find_dll(TCHAR* szModuleName, DWORD pID) {
 	int count = 0;
@@ -42,12 +44,11 @@ vector<string> parse(string str) {
 }
 
 int main(){
-	DWORD pID = NULL;
-	printf("1: Minecraft* 1.19.3 - Singleplayer\n2: *Untitled - Notepad\n3: Overwatch\n4: Manual input\n");
+	printf("1: Minecraft* 1.19.3 - Singleplayer\n2: *Untitled - Notepad\n3: Overwatch\n4: League of Legends (TM) Client\n0: Manual input [pID]\n");
 	string input; getline(cin, input, '\n');
 	vector<string> choice = parse(input);
 	HWND hWindow = NULL;
-	if (choice[0] == "4")
+	if (choice[0] == "0")
 		pID = stoul(choice[1]);
 	else {
 		if (choice[0] == "1")
@@ -56,31 +57,33 @@ int main(){
 			hWindow = FindWindow(NULL, "*Untitled - Notepad");
 		else if (choice[0] == "3")
 			hWindow = FindWindow(NULL, "Overwatch");
+		else if (choice[0] == "4")
+			hWindow = FindWindow(NULL, "League of Legends (TM) Client");
 		GetWindowThreadProcessId(hWindow, &pID);
 	}
-	HANDLE p_handle = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pID);
-	if (!p_handle) {
+	process = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pID);
+	if (!process) {
 		fprintf(stderr, "[-] ERROR: Couldn't open process %lu. OpenProcess failed with error: %lu.\n", pID, GetLastError());
-		return 0;
+		return 1;
 	}
-	//LPCSTR dllPath = "G:\\Software\\Projects\\Dll1\\Release\\Dll1.dll";
+	//LPCSTR dllPath = "G:\\Software\\Projects\\aim_bot_memory\\ScyllaHide\\HookLibraryx64.dll";
 	LPCSTR dllPath = "G:\\Software\\Projects\\Dll1\\x64\\Release\\Dll1.dll";
-	LPVOID remoteBuffer = VirtualAllocEx(p_handle, NULL, strlen(dllPath), MEM_COMMIT, PAGE_EXECUTE_READWRITE);
+	LPVOID remoteBuffer = VirtualAllocEx(process, NULL, strlen(dllPath), MEM_COMMIT, PAGE_EXECUTE_READWRITE);
 	if (!remoteBuffer) printf("remote Buffer\n");
-	if (!WriteProcessMemory(p_handle, remoteBuffer, dllPath, strlen(dllPath), NULL)) printf("Error: write process memory\n");
+	if (!WriteProcessMemory(process, remoteBuffer, dllPath, strlen(dllPath), NULL)) printf("Error: write process memory\n");
 	HMODULE hModule = GetModuleHandleA("Kernel32.dll");
 	LPTHREAD_START_ROUTINE threadAddress = (LPTHREAD_START_ROUTINE)GetProcAddress(hModule, "LoadLibraryA");
 	if (!threadAddress) printf("Error: thread address\n");
-	HANDLE hThread = CreateRemoteThread(p_handle, NULL, 0, threadAddress, remoteBuffer, 0, NULL);
+	HANDLE hThread = CreateRemoteThread(process, NULL, 0, threadAddress, remoteBuffer, 0, NULL);
 	WaitForSingleObject(hThread, INFINITE);
-	VirtualFreeEx(p_handle, remoteBuffer, strlen(dllPath), MEM_RELEASE); // Free the memory allocated for our dll path
+	VirtualFreeEx(process, remoteBuffer, strlen(dllPath), MEM_RELEASE); // Free the memory allocated for our dll path
 	
 	char module_name[] = "Dll1.dll";
 	LPVOID dll_addr = find_dll(module_name, pID);
 	cin.get();
 
 	threadAddress = (LPTHREAD_START_ROUTINE)GetProcAddress(hModule, "FreeLibrary");
-	hThread = CreateRemoteThread(p_handle, NULL, 0, threadAddress, dll_addr, 0, NULL);
+	hThread = CreateRemoteThread(process, NULL, 0, threadAddress, dll_addr, 0, NULL);
 	WaitForSingleObject(hThread, INFINITE);
 	find_dll(module_name, pID);
 	return 0;

@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>G:\Software\Projects\aim_bot_memory\x64\Release\aim_memory.exe</FullPath>
+      <FullPath>G:\Software\visual_studio\aim_bot_memory\x64\Release\aim_memory.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
