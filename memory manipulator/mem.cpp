@@ -6,20 +6,18 @@
 #include <string>
 #include <time.h>
 #include <cmath>
-#include "drawer.cpp"
-#include "debugger.cpp"
 using namespace std;
 
 typedef unsigned long long DDWORD;
 
-class Mem_info {
+class Mem_info { // information of memory block
 public:
 	BYTE* addr; DDWORD block_size;
 	Mem_info(BYTE* addr, DDWORD block_size) {
 		this->addr = addr; this->block_size = block_size;
 	}
 };
-class Point {
+class Point { // (address - value read from it) pair
 public:
 	BYTE* addr; USHORT value;
 	Point(BYTE* addr, USHORT value) {
@@ -37,28 +35,9 @@ BYTE bytes_to_read = 1;
 BYTE* exe_addr;
 DDWORD max_block_size = 0;
 
-void msg_box(const char* msg) {
+/*void msg_box(const char* msg) {
 	MessageBox(NULL, msg, "Debug", NULL);
-}
-
-void ListProcessModules() {
-	HANDLE hModuleSnap = INVALID_HANDLE_VALUE;
-	MODULEENTRY32 me32;
-	hModuleSnap = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, pID);
-	me32.dwSize = sizeof(MODULEENTRY32);
-	if (!Module32First(hModuleSnap, &me32)) {
-		CloseHandle(hModuleSnap);
-		return;
-	}
-	do {
-		_tprintf(TEXT("%s "), me32.szModule);
-		printf("%p %lld\n", me32.modBaseAddr, me32.modBaseAddr);
-		exe_addr = me32.modBaseAddr;
-		break;
-	} while (Module32Next(hModuleSnap, &me32));
-	CloseHandle(hModuleSnap);
-	return;
-}
+}*/
 
 void get_process_memory(DWORD start, DWORD end) {
 	SYSTEM_INFO sysInfo;
@@ -90,7 +69,7 @@ void get_process_memory(DWORD start, DWORD end) {
 	}
 }
 
-vector<string> parse(string str) {
+vector<string> parse(string str) { // Parse keyboard inputs
 	vector<string> choice;
 	short start = 0;
 	for (short i = 0; i < str.length(); i++)
@@ -103,7 +82,7 @@ vector<string> parse(string str) {
 	return choice;
 }
 
-long long addr2val(BYTE* addr, float type) {
+long long addr2val(BYTE* addr, float type) { // read an address and convert to value
 	if (type == 1)
 		return *(char*)addr;
 	else if (type == 2)
@@ -118,7 +97,7 @@ long long addr2val(BYTE* addr, float type) {
 		return *(double*)addr;
 }
 
-DDWORD addr2uval(BYTE* addr, float type) {
+DDWORD addr2uval(BYTE* addr, float type) { // read an address and convert to unsigned value
 	if (type == -1)
 		return *(unsigned char*)addr;
 	else if (type == -2)
@@ -137,7 +116,7 @@ float decide_type(string choice) {
 	return type;
 }
 
-bool compare_str(BYTE* chars, string str) {
+bool compare_str(BYTE* chars, string str) { // string comparison
 	for (short i = 0; i < bytes_to_read; i++) {
 		if ((BYTE)chars[i] != (BYTE)str[i])
 			return false;
@@ -338,58 +317,45 @@ void read_range(DDWORD addr, short range, float type) {
 	fclose(fp);
 }
 
-void read_range_str(DDWORD addr, short range, BYTE length) {
-	FILE* fp; fopen_s(&fp, "G:/Software/Projects/aim_bot_memory/string.txt", "w");
-	BYTE* buffer = new BYTE[length];
-	for (short offset = -range; offset <= range; offset++) {
-		if (!ReadProcessMemory(process, (BYTE*)addr + offset, buffer, length, NULL))
-			continue;
-
-		fprintf(fp, "(%d)addr: %lld val: %s\n", offset, addr + offset, buffer);
-		printf("(%d)addr: %lld val: %s\n", offset, addr + offset, buffer);
-	}
-	fclose(fp);
-}
-
 void read_ptr(DDWORD ptr_addr, float type) {
-	const DWORD size = 8;
+	const DWORD size = 8; // 64bits pointer
 	BYTE ptr[size];
 	if(!ReadProcessMemory(process, (BYTE*)ptr_addr, ptr, 8, NULL)) return;
-	if(!ReadProcessMemory(process, (BYTE*)*(DDWORD*)ptr, read_buffer, bytes_to_read, NULL)) return;
+	if(!ReadProcessMemory(process, (BYTE*)*(DDWORD*)ptr, read_buffer, bytes_to_read, NULL)) return; // dereferenced value
 	printf("Result: %lld\n", addr2val(read_buffer, type));
 }
 
 void write(DDWORD addr, string val, float type) {
-	if (type == 4) {
+	if (type == 4) { // float
 		float buffer = stof(val);
 		if (!WriteProcessMemory(process, (BYTE*)addr, &buffer, bytes_to_read, NULL))
 			printf("Error\n");
 	}
-	else if (type == 8) {
+	else if (type == 8) { // double
 		double buffer = stod(val);
 		if (!WriteProcessMemory(process, (BYTE*)addr, &buffer, bytes_to_read, NULL))
 			printf("Error\n");
 	}
-	else {
+	else { // long long
 		long long buffer = stoll(val);
 		if (!WriteProcessMemory(process, (BYTE*)addr, &buffer, bytes_to_read, NULL))
 			printf("Error\n");
 	}
 }
 
-void change_through(string val, float type) {
+void change_through(string val, float type) { // Change values iterating filtered addresses
 	DWORD i = 0;
 	for (Point point : *filtered) {
 		printf("(%d)addr %lld changed. Enter", i++, point.addr);
 		string input; getline(cin, input, '\n');
 		if (input == "0")
 			return;
-		if (type == 4.1) {
+		if (type == 4) {
 			float buffer = stof(val);
 			if (!WriteProcessMemory(process, (BYTE*)point.addr, &buffer, bytes_to_read, NULL))
 				printf("Error\n");
 		}
-		else if (type == 8.1) {
+		else if (type == 8) {
 			double buffer = stod(val);
 			if (!WriteProcessMemory(process, (BYTE*)point.addr, &buffer, bytes_to_read, NULL))
 				printf("Error\n");
@@ -408,17 +374,18 @@ void change_through(string val, float type) {
 	}
 }
 
-void freeze_value() {
-	while (true) {
-		float buffer = 200;
-		if (!WriteProcessMemory(process, (BYTE*)2614630500168, &buffer, 4, NULL))
-			printf("Error\n");
-		if (!WriteProcessMemory(process, (BYTE*)2614682737912, &buffer, 4, NULL))
-			printf("Error\n");
-		if (!WriteProcessMemory(process, (BYTE*)2614682741848, &buffer, 4, NULL))
-			printf("Error\n");
+/*void read_range_str(DDWORD addr, short range, BYTE length) { // read addresses as string type
+	FILE* fp; fopen_s(&fp, "G:/Software/Projects/aim_bot_memory/string.txt", "w");
+	BYTE* buffer = new BYTE[length];
+	for (short offset = -range; offset <= range; offset++) {
+		if (!ReadProcessMemory(process, (BYTE*)addr + offset, buffer, length, NULL))
+			continue;
+
+		fprintf(fp, "(%d)addr: %lld val: %s\n", offset, addr + offset, buffer);
+		printf("(%d)addr: %lld val: %s\n", offset, addr + offset, buffer);
 	}
-}
+	fclose(fp);
+}*/
 
 void main() {
 	printf("1: Minecraft* 1.19.3 - Singleplayer\n2: *Untitled - Notepad\n3: Overwatch\n4: League of Legends (TM) Client\n0: Manual input [pID]\n");
@@ -444,15 +411,14 @@ void main() {
 		return;
 	}
 	printf("Process %d opened\n", pID);
-	ListProcessModules();
 
 	float type = 1;
 	read_buffer = new BYTE[1];
 	//attach_debugger(process, pID, (DWORD_PTR)915943717920);
 	while (true) {
 		printf("1 [type]: set type / 2: detect even / 3: detect odd\n");
-		printf("4: get result / 5 [addr] [range]: read range / 6 [addr] [range] [length]: read string\n");
-		printf("7 [addr] [val]: write / 8 [val]: change through / 9 [ptr_addr]: read ptr\n");
+		printf("4: get result / 5 [addr] [range]: read range / 6 [addr] [val]: write\n");
+		printf("7 [val]: change through / 8 [ptr_addr]: read ptr\n");
 		string input; getline(cin, input, '\n');
 		vector<string> choice = parse(input);
 		if (choice[0] == "1")
@@ -466,12 +432,10 @@ void main() {
 		else if (choice[0] == "5")
 			read_range(stoull(choice[1]), stoi(choice[2]), type);
 		else if (choice[0] == "6")
-			read_range_str(stoull(choice[1]), stoi(choice[2]), stoi(choice[3]));
-		else if (choice[0] == "7")
 			write(stoull(choice[1]), choice[2], type);
-		else if (choice[0] == "8")
+		else if (choice[0] == "7")
 			change_through(choice[1], type);
-		else if (choice[0] == "9")	
+		else if (choice[0] == "8")	
 			read_ptr(stoull(choice[1]), type);
 		else return;
 	}
