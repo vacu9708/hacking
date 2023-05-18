@@ -4,7 +4,7 @@
 - VirtualQueryEx() to retrieve the target process's memory information
 
 # Alternative
-Other processes' memory can be read by injecting a DLL into the target process.<br>
+Other processes' memory can be handled by injecting a DLL into the target process.<br>
 This way, the target process is considered the same process as the manipulating DLL, which allows direct access to other processes' memory through pointers.<br>
 
 # Why this is not enough to hack a game?
