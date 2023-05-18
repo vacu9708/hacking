@@ -8,5 +8,6 @@ Other processes' memory can be handled by injecting a DLL into the target proces
 This way, the target process is considered the same process as the manipulating DLL, which allows direct access to other processes' memory through pointers.<br>
 
 # Why this is not enough to hack a game?
+To constantly read specific memory addresses such as enemies' coordinates, a breakpoint has to be set so that it is triggered on reading the specific memory addresses. 
 Anti-anti-debugging is required because anti-debugging techniques are applied in all commercial games which prevent the games from being debugged.<br>
 Kernel-level anti-anti-debugging techniques are necessary to hack commercial games.
