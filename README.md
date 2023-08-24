@@ -12,11 +12,11 @@ To constantly read specific memory addresses such as enemies' coordinates, a bre
 Anti-anti-debugging is required because anti-debugging techniques are applied in all commercial games which prevent the games from being debugged.<br>
 Kernel-level anti-anti-debugging techniques are necessary to hack commercial games.
 
-![image](https://github.com/vacu9708/hacking/assets/67142421/5023b4c2-99ea-4bdb-b6ae-4c88037aa49c)
-<br>Entered the process ID<br>
-![image](https://github.com/vacu9708/hacking/assets/67142421/533b03da-d119-41f2-9ca3-0428159550e6)
-<br>The default data type is 1 byte(char). Entered "detect even" to search memory addresses in even numbers <br>
-![image](https://github.com/vacu9708/hacking/assets/67142421/9468114f-c349-4b1f-bd1f-8937b1c5f7da)
+![image](https://github.com/vacu9708/hacking/assets/67142421/5023b4c2-99ea-4bdb-b6ae-4c88037aa49c)<br>
+Entered the process ID<br>
+![image](https://github.com/vacu9708/hacking/assets/67142421/533b03da-d119-41f2-9ca3-0428159550e6)<br>
+The default data type is 1 byte(char). Entered "detect even" to search memory addresses in even numbers <br>
+![image](https://github.com/vacu9708/hacking/assets/67142421/9468114f-c349-4b1f-bd1f-8937b1c5f7da)<br>
 Entered 2 1 to find data that has a value that is 1.<br>
 Change the found value in the app you are cheating in and find the changed value to narrow down candidate memory addresses.<br>
-Repeat this to find the target value to cheat on.<br>
+Repeat this to find the target value to cheat on.
