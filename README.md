@@ -1,4 +1,4 @@
-# Why winAPIs are needed to handle other processes' memory?
+# What winAPIs are needed to handle other processes' memory?
 - ReadProcessMemory() to read memory
 - WriteProcessMemory() to write to memory
 - VirtualQueryEx() to retrieve the target process's memory information
